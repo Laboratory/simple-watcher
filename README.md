@@ -18,6 +18,6 @@ Run simple-watcher command with parameters in console
 ## Params
 
     simple-watcher [--without_js_compiling]
-         [--watch_folder=folder]
-         [--build_folder=folder]
-         [--settings_name=file_name]
+         [--watch_folder=folder] - src by default
+         [--build_folder=folder] - public by default
+         [--profile_name=file_name] - .profile by default

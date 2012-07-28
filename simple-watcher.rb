@@ -15,11 +15,11 @@ argv_str = ARGV.join(" ")
 
 watch_folder = "src"
 build_folder = "public"
-setting_name = ".settings"
+profile_name = ".profile"
 hash = {}
 
 without_js_compiling = (argv_str.match(/--without_js_compiling/) != nil)
-["build_folder", "watch_folder", "setting_name"].each do |match_name|
+["build_folder", "watch_folder", "profile_name"].each do |match_name|
   match = argv_str.match(Regexp.new('(--' + match_name + '=)([.\w\/]+)'))
   unless (match.nil?)
     eval("#{match_name}=\"#{match[2]}\"")
@@ -53,7 +53,7 @@ def console_log(text)
   puts "<<< [#{Time.now.strftime('%Y-%m-%d %H:%M:%S')}]\e[1m\e[32m #{text} \e[0m"
 end
 
-File.open(setting_name, File::CREAT|File::RDWR) do |f|
+File.open(profile_name, File::CREAT|File::RDWR) do |f|
   content = f.read
   hash = eval(content) unless content.empty?
 end
@@ -138,7 +138,7 @@ while true do
 
     hash = new_hash
 
-    File.open(setting_name, File::CREAT|File::RDWR) do |f|
+    File.open(profile_name, File::CREAT|File::RDWR) do |f|
       f.truncate(0)
       f.write(hash.to_s)
     end
